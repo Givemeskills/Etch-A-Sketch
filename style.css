@@ -1,22 +1,21 @@
-.cellStyles {
+.cell-styles {
     border-color: black;
-    background-color: salmon;
     border-style: solid;
     border-width: 1px;
-    height:20px;
-    width:20px;
+    height:15px;
+    width:15px;
     margin: 0px;
     display: inline-flex;
     
 }
 
 
-.rowStyles {
+.row-styles {
 display: flex;
 justify-content: space-around;
 
 }
 
-#gridContainer {
+#grid-container {
     display: inline-block;
 }
