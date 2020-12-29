@@ -4,7 +4,8 @@ column - a list of all columns
 */
 let table = document.querySelector("#gridContainer");
 let rows = document.getElementsByClassName("rowStyles");
-let column = document.getElementsByClassName("cellStyles")
+let column = document.getElementsByClassName("cellStyles");
+let reset = document.getElementById("reset");
 
 function makeRows(rowNum) {
 
@@ -32,4 +33,15 @@ function createTable (r, c) {
 
 table.addEventListener("mouseover", function(event){
     event.target.style.backgroundColor = "black";
+    console.log(event.target);
 })
+
+function resetColor() {
+    for(i=0; i < column.length; i++) {
+    column[i].style.backgroundColor = "white";
+}}
+
+reset.addEventListener("click", resetColor);
+
+
+createTable(16,16);

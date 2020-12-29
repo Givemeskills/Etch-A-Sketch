@@ -1,5 +1,6 @@
-.cellStyles, .cellBlack {
+.cellStyles {
     border-color: black;
+    background-color: salmon;
     border-style: solid;
     border-width: 1px;
     height:20px;
@@ -9,9 +10,6 @@
     
 }
 
-.cellBlack {
-    background-color: black;
-}
 
 .rowStyles {
 display: flex;
