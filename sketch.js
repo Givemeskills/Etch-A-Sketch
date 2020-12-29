@@ -1,4 +1,7 @@
-
+/* Essential variables
+Rows - a list of all rows
+column - a list of all columns
+*/
 let table = document.querySelector("#gridContainer");
 let rows = document.getElementsByClassName("rowStyles");
 let column = document.getElementsByClassName("cellStyles")
@@ -26,3 +29,7 @@ function createTable (r, c) {
     makeRows(r);
     makeColumns(c);
 }
+
+table.addEventListener("mouseover", function(event){
+    event.target.style.backgroundColor = "black";
+})
