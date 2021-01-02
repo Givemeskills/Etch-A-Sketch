@@ -2,20 +2,21 @@
     border-color: black;
     border-style: solid;
     border-width: 1px;
-    height:15px;
-    width:15px;
-    margin: 0px;
-    display: inline-flex;
-    
 }
 
 
 .row-styles {
-display: flex;
-justify-content: space-around;
+    display: flex;
 
 }
 
+#test {
+    height: 20px;
+    background-color: blueviolet;
+}
+
 #grid-container {
-    display: inline-block;
+    width: 600px;
+    border-style: solid;
+    border-width: 1px
 }
