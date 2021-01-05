@@ -4,6 +4,10 @@
     border-width: 1px;
 }
 
+.cell-shade {
+    background-color: black;
+    opacity: 10%;
+}
 
 .row-styles {
     display: flex;
@@ -12,7 +16,6 @@
 
 #test {
     height: 20px;
-    background-color: blueviolet;
 }
 
 #grid-container {

@@ -10,7 +10,9 @@ let reset = document.getElementById("reset-button");
 let eraser = document.getElementById("eraser");
 let rainbowButton = document.getElementById("change-color-rainbow");
 let defaultButon = document.getElementById("change-color-default");
+let shaderButton = document.getElementById("change-color-shader");
 let tableSize = 16;
+let test = document.getElementById("test");
 
 function makeRows(rowNum) {
 
@@ -38,13 +40,9 @@ function createTable (rowNum, columnNum) {
     makeColumns(columnNum);
 }
 
-// adds drawing functionality
-table.addEventListener("mouseover", function(event){
-    event.target.style.backgroundColor = "black";
-})
-
 // 'erases' color by resetting background of all cells to white
 function resetColor() {
+    removeListeners();
     for(i=0; i < cells.length; i++) {
     cells[i].style.backgroundColor = "white";
 }}
@@ -64,31 +62,79 @@ eraser.addEventListener("click", function(even) {
 
 })
 
-// button to change color of pen to default (black)
-defaultButon.addEventListener("click", function(event){
-    
-    table.addEventListener("mouseover", function(event){
-        event.target.style.backgroundColor = "black";
-    })
 
-})
+// Default (black) pen functionality & button
+function blackPen(event) {
+    event.target.style.backgroundColor = "black";
+}
+function addBlackPenToGrid() {
+    removeListeners();
+    table.addEventListener("mouseover", blackPen)
+}
+defaultButon.addEventListener("click", addBlackPenToGrid);
 
-// button to change color of pen to rainbow
-rainbowButton.addEventListener("click", function(event) {
 
-    table.addEventListener("mouseover", function(event){
+// Shading pen (increase opacity 10% over each pass) functionality and button
+function shadingPen(event) {
+        if (event.target.style.backgroundColor === "white") {
+            event.target.style.backgroundColor = "rgba(0, 0, 0, 0.1)";
+        } else {
+        let bgColor = event.target.style.backgroundColor;
+        let alphaString = bgColor.slice(14,17);
+        let alpha = parseFloat(alphaString);
+        event.target.style.backgroundColor = `rgba(0, 0, 0, ${(alpha+0.1)})`
+        }
+}
+
+function addShadingPenToGrid() {
+    removeListeners();
+    table.addEventListener("mouseover", shadingPen);
+}
+
+shaderButton.addEventListener("click", addShadingPenToGrid);
+
+// Rainbow pen functionality & button
+function rainbowPen(event){
         generateColorValue();
         event.target.style.backgroundColor = "rgb(" + colorValue[0] + "," + colorValue[1] + "," + colorValue[2] + ")";
+}
 
-    })
-    
-}) 
+function addRainbowPenToGrid() {
+    removeListeners();
+    table.addEventListener("mouseover", rainbowPen);
+}
+
+rainbowButton.addEventListener("click", addRainbowPenToGrid);
+
+// generates 3 numbers between 0-255 which will be used as RGB values
+let colorValue = [];
+function generateColorValue() {
+    for (i = 0; i < 3; i++) {
+        colorValue[i] = (Math.floor((Math.random() * 255)));
+}
+    return colorValue;
+}
+
+function removeListeners() {
+    table.removeEventListener("mouseover", shadingPen);
+    table.removeEventListener("mouseover", blackPen);
+    table.removeEventListener("mouseover", rainbowPen);
+}
+
+
+
+
+
+
+
+
+
+
 
 // Slider to alter size
 var rangeslider = document.getElementById("sliderRange");
 var output = document.getElementById("padSize");
 output.innerHTML = rangeslider.value;
-
 rangeslider.oninput = function() {
   output.innerHTML = this.value;
 
@@ -100,17 +146,3 @@ rangeslider.oninput = function() {
     createTable(tableSize, tableSize);
     resetColor();
     }
-
-// generates 3 numbers between 0-255 which will be used as RGB values
-let colorValue = [];
-function generateColorValue() {
-    for (i = 0; i < 3; i++) {
-        colorValue[i] = (Math.floor((Math.random() * 255)));
-}
-    return colorValue;
-}
-
-
-
-
-
