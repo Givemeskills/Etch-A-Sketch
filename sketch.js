@@ -7,12 +7,37 @@ let table = document.getElementById("grid-container");
 let rows = document.getElementsByClassName("row-styles");
 let cells = document.getElementsByClassName("cell-styles");
 let reset = document.getElementById("reset-button");
-let eraser = document.getElementById("eraser");
+let eraserButton = document.getElementById("eraser");
 let rainbowButton = document.getElementById("change-color-rainbow");
 let defaultButon = document.getElementById("change-color-default");
 let shaderButton = document.getElementById("change-color-shader");
 let tableSize = 16;
-let test = document.getElementById("test");
+
+// starts page with 16x16 etch-a-sketch
+createTable(tableSize, tableSize);
+resetColor(); // prevents all black glitch on load
+
+// Slider to alter size
+var rangeslider = document.getElementById("sliderRange");
+var output = document.getElementById("padSize");
+output.innerHTML = rangeslider.value;
+rangeslider.oninput = function() {
+    output.innerHTML = this.value;
+
+    for (i = 0; i < tableSize; i++) {
+    rows[0].remove();
+    }
+    tableSize = rangeslider.value;
+    createTable(tableSize, tableSize);
+    resetColor();
+}
+
+function removeListeners() {
+    table.removeEventListener("mouseover", shadingPen);
+    table.removeEventListener("mouseover", blackPen);
+    table.removeEventListener("mouseover", rainbowPen);
+    table.removeEventListener("mouseover", eraser);
+}
 
 function makeRows(rowNum) {
 
@@ -47,21 +72,17 @@ function resetColor() {
     cells[i].style.backgroundColor = "white";
 }}
 
-// starts page with 16x16 etch-a-sketch
-createTable(tableSize, tableSize);
-resetColor(); // prevents all black glitch on load
-
-// reset button to clear sketchpad
 reset.addEventListener("click", resetColor);
 
 // 'eraser' button sets pen to white
-eraser.addEventListener("click", function(even) {
-    table.addEventListener("mouseover", function(event){
-        event.target.style.backgroundColor = "white";
-    })
-
-})
-
+function eraser(event){
+    event.target.style.backgroundColor = "rgba(0,0,0,0)";
+}
+function addEraserToGrid() {
+    removeListeners();
+    table.addEventListener("mouseover", eraser)
+}
+eraserButton.addEventListener("click", addEraserToGrid);
 
 // Default (black) pen functionality & button
 function blackPen(event) {
@@ -73,16 +94,17 @@ function addBlackPenToGrid() {
 }
 defaultButon.addEventListener("click", addBlackPenToGrid);
 
-
 // Shading pen (increase opacity 10% over each pass) functionality and button
 function shadingPen(event) {
-        if (event.target.style.backgroundColor === "white") {
+        if (event.target.style.backgroundColor === "white" || event.target.classList.contains("rainbow")) {
             event.target.style.backgroundColor = "rgba(0, 0, 0, 0.1)";
+            event.target.classList.remove("rainbow");
         } else {
         let bgColor = event.target.style.backgroundColor;
         let alphaString = bgColor.slice(14,17);
         let alpha = parseFloat(alphaString);
-        event.target.style.backgroundColor = `rgba(0, 0, 0, ${(alpha+0.1)})`
+        event.target.style.backgroundColor = `rgba(0, 0, 0, ${(alpha+0.1)})`;
+        event.target.classList.remove("rainbow");
         }
 }
 
@@ -94,19 +116,7 @@ function addShadingPenToGrid() {
 shaderButton.addEventListener("click", addShadingPenToGrid);
 
 // Rainbow pen functionality & button
-function rainbowPen(event){
-        generateColorValue();
-        event.target.style.backgroundColor = "rgb(" + colorValue[0] + "," + colorValue[1] + "," + colorValue[2] + ")";
-}
-
-function addRainbowPenToGrid() {
-    removeListeners();
-    table.addEventListener("mouseover", rainbowPen);
-}
-
-rainbowButton.addEventListener("click", addRainbowPenToGrid);
-
-// generates 3 numbers between 0-255 which will be used as RGB values
+// generates 3 numbers between 0-255 which will be used as RGB values for rainbow pen
 let colorValue = [];
 function generateColorValue() {
     for (i = 0; i < 3; i++) {
@@ -115,34 +125,15 @@ function generateColorValue() {
     return colorValue;
 }
 
-function removeListeners() {
-    table.removeEventListener("mouseover", shadingPen);
-    table.removeEventListener("mouseover", blackPen);
-    table.removeEventListener("mouseover", rainbowPen);
+function rainbowPen(event){
+        generateColorValue();
+        event.target.style.backgroundColor = "rgb(" + colorValue[0] + "," + colorValue[1] + "," + colorValue[2] + ")";
+        event.target.classList.add("rainbow");
 }
 
+function addRainbowPenToGrid() {
+    removeListeners();
+    table.addEventListener("mouseover", rainbowPen);
+}
 
-
-
-
-
-
-
-
-
-
-// Slider to alter size
-var rangeslider = document.getElementById("sliderRange");
-var output = document.getElementById("padSize");
-output.innerHTML = rangeslider.value;
-rangeslider.oninput = function() {
-  output.innerHTML = this.value;
-
-  for (i = 0; i < tableSize; i++) {
-    rows[0].remove();
-    
-    }
-    tableSize = rangeslider.value;
-    createTable(tableSize, tableSize);
-    resetColor();
-    }
+rainbowButton.addEventListener("click", addRainbowPenToGrid);
