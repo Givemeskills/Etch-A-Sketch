@@ -6,23 +6,30 @@
   <title>Etch-A-Sketch</title>
 </head>
 <body>
-    <div id = "top">
-        <h1>Etch-A-Sketch</h1>
-        <button id = "reset-button">Erase all</button>
-        <button id = "change-color-default">Default Mode</button>
-        <button id = "change-color-rainbow">Rainbow Mode</button>
-        <button id = "change-color-shader">Shading Mode</button>
-        <button id = "eraser">Eraser</button>
-        <br>
-        <div class="rangeslider"> 
-        <input type="range" min="1" max="100" value="16"
-              class="myslider" id="sliderRange"> 
-            <p>Size: <span id = "padSize"></span></p>
+    <div class = "main">
+      <div id = "sketchpad">
+        <div id = "top">
+          <h1>Etch-A-Sketch</h1>
         </div> 
+        <div id = "grid-container"></div>
+          <div id = "controls">
+            <button id = "reset-button">Erase all</button>
+            <button id = "change-color-default">Default Mode</button>
+            <button id = "change-color-rainbow">Rainbow Mode</button>
+            <button id = "change-color-shader">Shading Mode</button>
+            <button id = "eraser">Eraser</button>
+            <button id = "remove-grid">Remove gridlines</button>
+          </div>
+        <div id = "slider-panel">
+          <div class="rangeslider"> 
+            <input type="range" min="4" max="64" value="16" class="myslider" id="sliderRange"> 
+          </div>
+          <p>Size: <span id = "padSize"></span></p>
+        </div>
+          
+       </div>
     </div>
-    <div id = "sketchpad">
-    <div id = "grid-container"></div>
-    </div>
+  </div>
 <script src = "sketch.js">
 </script>
 </body>

@@ -11,6 +11,7 @@ let eraserButton = document.getElementById("eraser");
 let rainbowButton = document.getElementById("change-color-rainbow");
 let defaultButon = document.getElementById("change-color-default");
 let shaderButton = document.getElementById("change-color-shader");
+let removeGridButton = document.getElementById("remove-grid");
 let tableSize = 16;
 
 // starts page with 16x16 etch-a-sketch
@@ -45,7 +46,7 @@ function makeRows(rowNum) {
         let row = document.createElement('div');
         row.classList.add("row-styles")
         table.appendChild(row);
-        row.style.height = "calc(600px / " + tableSize + ")";
+        row.style.height = "calc(500px / " + tableSize + ")";
     }
 }
 
@@ -55,7 +56,7 @@ function makeColumns(columns) {
             let cell = document.createElement('div');
             cell.classList.add("cell-styles");
             rows[j].appendChild(cell);
-            cell.style.width = "calc(600px / " + tableSize +")";
+            cell.style.width = "calc(5000px / " + tableSize +")";
         }
     }
 }
@@ -83,6 +84,19 @@ function addEraserToGrid() {
     table.addEventListener("mouseover", eraser)
 }
 eraserButton.addEventListener("click", addEraserToGrid);
+
+// button to remove gridlines
+function removeGrid() {
+    console.log(removeGrid);
+    for(i=0; i < cells.length; i++) {
+        if (cells[i].style.border != "none") {
+        cells[i].style.border = "none";
+        } else {
+        cells[i].style.border = "1px solid black";
+        }
+}}
+
+removeGridButton.addEventListener("click", removeGrid)
 
 // Default (black) pen functionality & button
 function blackPen(event) {
