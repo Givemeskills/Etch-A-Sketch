@@ -20,10 +20,7 @@ resetColor(); // prevents all black glitch on load
 
 // Slider to alter size
 var rangeslider = document.getElementById("sliderRange");
-var output = document.getElementById("padSize");
-output.innerHTML = rangeslider.value;
 rangeslider.oninput = function() {
-    output.innerHTML = this.value;
 
     for (i = 0; i < tableSize; i++) {
     rows[0].remove();
@@ -56,7 +53,7 @@ function makeColumns(columns) {
             let cell = document.createElement('div');
             cell.classList.add("cell-styles");
             rows[j].appendChild(cell);
-            cell.style.width = "calc(5000px / " + tableSize +")";
+            cell.style.width = "calc(580px / " + tableSize +")";
         }
     }
 }
