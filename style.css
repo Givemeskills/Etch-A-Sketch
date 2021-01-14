@@ -4,23 +4,23 @@ body{
     height: 100vh;
 }
 
-h1 {
-    margin: 0
+h1{
+    margin: 0;
 }
 
 h2 { 
-    margin: 0;
     font-weight: lighter;
     font-size: 18px;
     position: relative;
-    bottom: 5px;
+    bottom: 0.5em;
     opacity: 70%;
 }
 
 #top {
     text-align: center;
     font-family: 'Pacifico';
-    font-size: 20px;
+    font-size: 100%;
+    width: 100%;
 }
 
 .main {
