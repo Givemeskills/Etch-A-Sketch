@@ -43,7 +43,7 @@ function makeRows(rowNum) {
         let row = document.createElement('div');
         row.classList.add("row-styles")
         table.appendChild(row);
-        row.style.height = "calc(500px / " + tableSize + ")";
+        row.style.height = "calc(100% / " + tableSize + ")";
     }
 }
 
@@ -53,7 +53,7 @@ function makeColumns(columns) {
             let cell = document.createElement('div');
             cell.classList.add("cell-styles");
             rows[j].appendChild(cell);
-            cell.style.width = "calc(580px / " + tableSize +")";
+            cell.style.width = "calc(100% / " + tableSize +")";
         }
     }
 }
@@ -82,18 +82,6 @@ function addEraserToGrid() {
 }
 eraserButton.addEventListener("click", addEraserToGrid);
 
-// button to remove gridlines
-function removeGrid() {
-    console.log(removeGrid);
-    for(i=0; i < cells.length; i++) {
-        if (cells[i].style.border != "none") {
-        cells[i].style.border = "none";
-        } else {
-        cells[i].style.border = "1px solid black";
-        }
-}}
-
-removeGridButton.addEventListener("click", removeGrid)
 
 // Default (black) pen functionality & button
 function blackPen(event) {

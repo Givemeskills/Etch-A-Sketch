@@ -1,16 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Pacifico&display=swap');
-body{
-    background-image: linear-gradient(#D1FAFF, #9BD1E5);
-    height: 100vh;
+html{
+    height: 100%;
 }
 
-h1{
+body {
+    font-size: 20px;
+    height: 100%;
+    background-image: linear-gradient(to bottom right, #006E90, #ADCAD6);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+main {
+
+}
+
+h1 {
     margin: 0;
 }
 
 h2 { 
     font-weight: lighter;
-    font-size: 18px;
+    font-size: 1em;
     position: relative;
     bottom: 0.5em;
     opacity: 70%;
@@ -19,21 +34,16 @@ h2 {
 #top {
     text-align: center;
     font-family: 'Pacifico';
-    font-size: 100%;
-    width: 100%;
 }
 
-.main {
-    display: flex;
-    justify-content: space-around
-}
+
 
 #sketchpad {
+    box-sizing: border-box;
+    width: 22em;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 500px;
-    border-width: 7px;
+    border-width: 0.5em;
     border-style: solid;
     border-color: black;
     border-radius: 6%;
@@ -42,15 +52,14 @@ h2 {
 
 
 #grid-container {
-    width: 500px;
-    height: 500px;
-    border-bottom: 5px solid black;
+    height:22em;
     border-top: 5px solid black;
+    border-bottom:  5px solid black;
 }
 
 .cell-styles {
-    border: 1px solid black;
     background-color: white;
+
 }
 
 
@@ -63,8 +72,10 @@ h2 {
 
 #controls {
     padding: 10px;
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 1fr 1fr;
 }
 
 .buttons,  .right-buttons {
@@ -81,17 +92,9 @@ h2 {
 }
 
 
-
-#slider-panel{
-    display: flex;
-    align-items: center;
-    padding: 20px;
-}
-
-
 .myslider {
     -webkit-appearance: none;
-    height: 10px;
+    height: 0.7em;
     width: 100%;
     background: black;
     outline: none;
@@ -99,12 +102,13 @@ h2 {
 .myslider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 20px;
-    height: 20px;
+    width: 10%;
+    height: 2em;
     background: white;
 }
 
-#controls-right {
-    display: grid;
-    grid-template-columns: 50% 50%;
-}
+@media only screen and (max-width: 800px) {
+
+    body {
+        font-size: 14.4px
+    }

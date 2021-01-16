@@ -1,38 +1,30 @@
 <!DOCTYPE html>
 <html>
-
   <head>
     <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel = "stylesheet" href = "style.css">
     <title>Etch-A-Pad</title>
   </head>
-
   <body>
-   <div class = "main">
+    <main>
       <div id = "sketchpad">
-       <div id = "top">
-         <h1>Etch-A-Pad</h1>
-         <h2>~ a Givemeskills toy ~</h2>
-       </div> 
-
-       <div id = "grid-container"></div>
-        
-       <div id = "controls">
+        <div id = "top">
+          <h1>Etch-A-Pad</h1>
+          <h2>~ a Givemeskills toy ~</h2>
+        </div> 
+        <div id = "grid-container"></div>
+        <div id = "controls">
           <button id = "reset-button" class= "buttons">Erase all</button>
-          <button id = "remove-grid" class = "buttons">Grid Toggle</button>
-          <div id = "slider-panel">  
           <div class="rangeslider"> 
             <input type="range" min="4" max="64" value="16" class="myslider" id="sliderRange"> 
           </div>
-        </div>
-        <div id = "controls-right">
           <button id = "eraser" class = "right-buttons">Eraser</button>
           <button id = "change-color-default" class = "right-buttons">Default</button>
           <button id = "change-color-rainbow" class = "right-buttons">Rainbow</button>
           <button id = "change-color-shader" class = "right-buttons">Shading</button>
         </div>
-    </div>
-  </div>
-  <script src = "sketch.js"></script>
+      </div>
+    </main>
+    <script src = "sketch.js"></script>
   </body>
 </html>
