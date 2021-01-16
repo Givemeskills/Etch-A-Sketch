@@ -1,6 +1,7 @@
 # Etch-A-Sketch
-- live version: https://givemeskills.github.io/Etch-A-Sketch/ -
-Etch-A-Sketch project for TOP. Exercising knowledge of DOM and all previous methods in HTML, CSS and Javascript
+live version: https://givemeskills.github.io/Etch-A-Sketch/ 
+
+A simple Etch-A-Sketch emulator
 
 Future updates
 - screenshot functionality
